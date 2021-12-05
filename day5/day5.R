@@ -4,7 +4,7 @@ library(dplyr)
 # Part 1 ------------------------------------------------------------------
 
 # read in data
-vents_data <- read.table("day5/day5_data.txt")
+vents_data <- read.table("day5/data_day5.txt")
 # modify data
 vents_data <- vents_data[,-2] # remove second column
 vents <- matrix(nrow = nrow(vents_data), ncol = 4) # specify vents matrix
