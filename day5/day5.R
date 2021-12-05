@@ -40,18 +40,11 @@ length(diagram[diagram >= 2]) # count number of ares that are covered by at leas
 
 # Part 2 ------------------------------------------------------------------
 
-# reset diagram
-diagram <- matrix(data = 0, nrow = 1000, ncol = 1000)
+vents_diag <- filter(vents, direction == "diagonal")
 
 # update diagram
-for(i in 1:nrow(vents)){
-  if(vents$direction[i] == "horizontal"){
-    diagram[vents$y1[i], vents$x1[i]:vents$x2[i]] <- diagram[vents$y1[i], vents$x1[i]:vents$x2[i]] + 1
-  } else if(vents$direction[i] == "vertical"){
-    diagram[vents$y1[i]:vents$y2[i], vents$x1[i]] <- diagram[vents$y1[i]:vents$y2[i], vents$x1[i]] + 1
-  } else{ # for diagonal vents
-    diag(diagram[vents$y1[i]:vents$y2[i], vents$x1[i]:vents$x2[i]]) <- diag(diagram[vents$y1[i]:vents$y2[i], vents$x1[i]:vents$x2[i]]) + 1
-  }
+for(i in 1:nrow(vents_diag)){
+  diag(diagram[vents_diag$y1[i]:vents_diag$y2[i], vents_diag$x1[i]:vents_diag$x2[i]]) <- diag(diagram[vents_diag$y1[i]:vents_diag$y2[i], vents_diag$x1[i]:vents_diag$x2[i]]) + 1
 }
 length(diagram[diagram >= 2]) # count number of ares that are covered by at least 2 vents
 
